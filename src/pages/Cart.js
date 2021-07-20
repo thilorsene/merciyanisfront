@@ -46,7 +46,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
+/*
+  The cart coponents
+*/
 export default function Cart(props) {
   const [cart,setCart] = useState([])
 
@@ -56,13 +58,15 @@ export default function Cart(props) {
 
   const classes = useStyles();
     return ( 
-                <TableContainer component={Paper}>
+              <TableContainer component={Paper}>
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                       <TableRow>
                         <TableCell>Title</TableCell>
-                        <TableCell align="right">Artist</TableCell>
-                        <TableCell align="right">Price</TableCell>
+                        <TableCell align="center">Title</TableCell>
+                        <TableCell align="center">Artist</TableCell>
+                        <TableCell align="center">Price</TableCell>
+                        <TableCell align="center">Actions</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -70,6 +74,12 @@ export default function Cart(props) {
                       <TableRow key={row.key}>
                         <TableCell component="th" scope="row">
                           {row.title}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.artist}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.price}
                         </TableCell>
                       </TableRow>
                        ))}

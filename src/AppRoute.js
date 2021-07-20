@@ -8,7 +8,7 @@ const Purchase = lazy(() => import('./pages/Purchase'));
 class AppRoutes extends Component {
   render () {
     return (
-      <Suspense fallback='{<Spinner/>}'>
+      <Suspense fallback='Loading'>
         <Switch>
           <Route exact path="/" component={ Main } />
           <Route exact path="/purchase" component={ Purchase } />
