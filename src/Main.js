@@ -41,7 +41,7 @@ export default function Main() {
         <div className={classes.heroContent}>
           <Container maxWidth="sm"> 
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              Let's Dance
+              COST ERP 
             </Typography>
             <Avatar alt="Logo MerciYanis" src={logo} className={classes.large}  style={{alignSelf: 'center'}} />
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
@@ -49,13 +49,21 @@ export default function Main() {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justifyContent="center">
                 <Grid item>
-                  <Button variant="contained" color="primary" component={Link} to="/purchase">
-                    Purchase an Album
+                  <Button variant="contained" color="primary" component={Link} to="/stock">
+                     Stock
                   </Button>
                 </Grid>
                 <Grid item>
-                  <CustomizedDialogs/>
+                  <Button variant="contained" color="primary" component={Link} to="/order">
+                    Commandes
+                  </Button>
                 </Grid>
+                <Grid item>
+                  <Button variant="contained" color="primary" component={Link} to="/bons">
+                    Bons de commandes
+                  </Button>
+                </Grid>
+                
               </Grid>
             </div>
           </Container>

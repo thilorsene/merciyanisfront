@@ -20,6 +20,7 @@ import blue from '@material-ui/core/colors/blue';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import MuiAlert from '@material-ui/lab/Alert';
+import Chip from '@mui/material/Chip';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -58,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Purchase(props) {
+export default function Bon(props) {
   const [error,setError] = useState(null)
   const [items,setItems] = useState([])
   const [isLoaded,setIsLoaded] = useState(false)
@@ -67,7 +68,7 @@ export default function Purchase(props) {
 
 
   useEffect(() => {
-      const uri = 'http://localhost:8000/stock'
+      const uri = 'http://localhost:8000/bons'
       fetch(uri)
         .then(res => res.json())
         .then((results ) => {
@@ -92,16 +93,17 @@ export default function Purchase(props) {
           <Grid container spacing={4}>
               <Grid item key={1} xs={12}>
               <Typography  align="center" color="textSecondary" >
-              Etat du Stock
+              Bon de commandes
             </Typography>
                 <TableContainer component={Paper}>
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                       <TableRow>
                         <TableCell align="center">ID</TableCell>
-                        <TableCell align="center">Nom</TableCell>
-                        <TableCell align="center">Prix</TableCell>
-                        <TableCell align="center">Qte</TableCell>
+                        <TableCell align="center">article</TableCell>
+                        <TableCell align="center">Date</TableCell>
+                        <TableCell align="center">Qte Commandée</TableCell>
+                        <TableCell align="center">Qte Livrée</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -111,13 +113,23 @@ export default function Purchase(props) {
                             {row.id}
                           </TableCell>
                           <TableCell align="center">
-                            {row.nom}
+                            {row.id_article}
                           </TableCell>
                           <TableCell align="center" >
-                            {row.prix}
+                            {row.date}
                           </TableCell>
-                          <TableCell align="center"style={row.qte<100 ? {backgroundColor:'red', color: 'white',}:{backgroundColor:'white', color: 'black',}}>
-                            {row.qte}
+                          <TableCell align="center">
+                            {row.qte_commande}
+                          </TableCell>
+                          <TableCell align="center">
+                            {row.qte_livree}
+                          </TableCell>
+                         
+                          <TableCell align="center" >
+                          <IconButton  aria-label="add to cart">
+                            <AddShoppingCartIcon />
+                          </IconButton>
+
                           </TableCell>
                           
                         </TableRow>

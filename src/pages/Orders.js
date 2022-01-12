@@ -18,8 +18,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Cart from './Cart'
 import blue from '@material-ui/core/colors/blue';
 import RemoveIcon from '@material-ui/icons/Remove';
+import Button from '@material-ui/core/Button';
+import CustomizedDialogs from "./Credits";
 import AddIcon from '@material-ui/icons/Add';
 import MuiAlert from '@material-ui/lab/Alert';
+import {Chip} from '@mui/material';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -58,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Purchase(props) {
+export default function Orders(props) {
   const [error,setError] = useState(null)
   const [items,setItems] = useState([])
   const [isLoaded,setIsLoaded] = useState(false)
@@ -67,7 +70,7 @@ export default function Purchase(props) {
 
 
   useEffect(() => {
-      const uri = 'http://localhost:8000/stock'
+      const uri = 'http://localhost:8000/order'
       fetch(uri)
         .then(res => res.json())
         .then((results ) => {
@@ -92,16 +95,17 @@ export default function Purchase(props) {
           <Grid container spacing={4}>
               <Grid item key={1} xs={12}>
               <Typography  align="center" color="textSecondary" >
-              Etat du Stock
+              Etats des commandes
             </Typography>
                 <TableContainer component={Paper}>
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                       <TableRow>
                         <TableCell align="center">ID</TableCell>
-                        <TableCell align="center">Nom</TableCell>
-                        <TableCell align="center">Prix</TableCell>
+                        <TableCell align="center">article</TableCell>
                         <TableCell align="center">Qte</TableCell>
+                        <TableCell align="center">Date</TableCell>
+                        <TableCell align="center">Status</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -111,22 +115,36 @@ export default function Purchase(props) {
                             {row.id}
                           </TableCell>
                           <TableCell align="center">
-                            {row.nom}
+                            {row.article_id}
                           </TableCell>
                           <TableCell align="center" >
-                            {row.prix}
-                          </TableCell>
-                          <TableCell align="center"style={row.qte<100 ? {backgroundColor:'red', color: 'white',}:{backgroundColor:'white', color: 'black',}}>
                             {row.qte}
                           </TableCell>
+                          <TableCell align="center">
+                            {row.date}
+                          </TableCell>
+                          <TableCell align="center" >
+                          <Chip label={row.status == 0 ? " En preparation" : row.status==1 ? "En cours": "Livrée"} style={row.status == 2 ?{backgroundColor:'green'}:{backgroundColor:'white'}}/>
+                          </TableCell>
+                         
                           
                         </TableRow>
                       ))}
                     </TableBody>
                   </Table>
                 </TableContainer>
+                
               </Grid>
             </Grid>
+            <Grid container spacing={2} justifyContent="center">
+                
+                <Grid item>
+                  <Button variant="contained" color="primary" component={CustomizedDialogs} >
+                   Faire une commande
+                  </Button>
+                </Grid>
+                
+              </Grid>
           </Container>
       </main>
     </React.Fragment>

@@ -49,12 +49,12 @@ const useStyles = makeStyles((theme) => ({
 /*
   The cart coponents
 */
-export default function Cart(props) {
+const Cart = ({elem}) => {
   const [cart,setCart] = useState([])
 
   useEffect(() => {
-     setCart(cart)
-    },[props.cart]);
+     setCart(elem)
+    },[elem]);
 
   const classes = useStyles();
     return ( 
@@ -70,7 +70,9 @@ export default function Cart(props) {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                    {cart.map((row) => (
+                    {elem.map((row) => {
+                      console.log("elem:",row)
+                      return(
                       <TableRow key={row.key}>
                         <TableCell component="th" scope="row">
                           {row.title}
@@ -81,10 +83,10 @@ export default function Cart(props) {
                         <TableCell align="center">
                           {row.price}
                         </TableCell>
-                      </TableRow>
-                       ))}
+                      </TableRow>)
+})}
                     </TableBody>
                   </Table>
                 </TableContainer>
     );
-  }
+  }; export default Cart

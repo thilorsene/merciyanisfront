@@ -15,8 +15,6 @@ import Icon from '@material-ui/core/Icon';
 import MoodIcon from '@material-ui/icons/Mood';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import { yellow } from '@material-ui/core/colors';
-import {Box,TextField} from '@mui/material';
-
 
 const styles = (theme) => ({
   root: {
@@ -66,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
       },
 }));
 
-export default function CustomizedDialogs() {
+export default function Send_Order() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -80,25 +78,27 @@ export default function CustomizedDialogs() {
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Nouvelle Commande
+        Credits
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Lancer une commande
+          App Credits
         </DialogTitle>
         <DialogContent dividers>
-        <form action="http://localhost:8000/send_order" method="POST" onSubmit={(e) => { e.preventDefault(); alert('Submitted form!'); this.handleClose(); }  }>
-        <div style={{ textAlign: 'center', padding: 8, margin: '24px -24px -24px -24px' }}>
-        <TextField name="id" hintText="Produit" label="ID produit" />
-          <TextField name="qte"  hintText="Quantite" label="Quantité" />
-          </div>
-          
-          <div style={{ textAlign: 'center', padding: 8, margin: '24px -24px -24px -24px' }}>
-            <Button variant="contained" color="primary" type="submit">
-                    Valider
-                  </Button>
-          </div>
-        </form>
+          <Typography gutterBottom  align="center">
+            With
+          </Typography>
+          <Typography align="center">
+          <EmojiEmotionsIcon style={{ color: yellow[800] }}></EmojiEmotionsIcon>
+            
+          </Typography>
+          <Typography gutterBottom>
+           By Mbaye Thilor SENE 
+          </Typography>
+        <Avatar alt="Logo MerciYanis" src={logo} className={classes.large}  style={{alignSelf: 'center'}} />
+        <Typography align="center">
+           Hakuna Matata !!!!
+          </Typography>
         </DialogContent>
       </Dialog>
     </div>
