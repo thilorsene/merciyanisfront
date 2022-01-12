@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+ app:
+  build:
+    context: ./
+  volumes:
+    - .:/merciyanisfront
+    - /merciyanisfront/node_modules
+  ports:
+      - 3001:3000
